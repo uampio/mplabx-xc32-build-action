@@ -30,7 +30,8 @@ sudo ./mplabx -- --unattendedmodeui none --mode unattended --ipe 0 --collectInfo
 rm -rf mplabx
 
 # Download and install XC32 compiler
-wget -nv -O /tmp/xc32 "https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/xc32-v${XC32_VERSION}-full-install-linux64-installer.run"
+wget -nv -O /tmp/xc32 "https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/xc32-v${XC32_VERSION}-full-install-linux-x64-installer.run"
+
 chmod +x /tmp/xc32
 
 sudo /tmp/xc32 --mode unattended --unattendedmodeui none --netservername localhost --LicenseType FreeMode --prefix "/opt/microchip/xc32/v${XC32_VERSION}"
