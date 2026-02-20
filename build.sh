@@ -81,17 +81,34 @@ cd ~
 
 pwd
 
+BUILD_PROJECT="$PROJECT"
+
+if [ -d "$PROJECT/nbproject" ]; then
+    BUILD_PROJECT="$PROJECT"
+else
+    detected_project=$(find "$PROJECT" -maxdepth 3 -type d -name "*.X" | head -n 1)
+    if [ -n "$detected_project" ] && [ -d "$detected_project/nbproject" ]; then
+        BUILD_PROJECT="$detected_project"
+    else
+        echo "Error: Could not find MPLAB project (folder with nbproject) under $PROJECT"
+        echo "Hint: pass the .X project path in the action input 'project'"
+        exit 5
+    fi
+fi
+
+echo "Resolved MPLAB project path: $BUILD_PROJECT"
+
 # Generate project makefiles
 echo "Generating makefiles"
-if ! /opt/mplabx/mplab_platform/bin/prjMakefilesGenerator.sh "$PROJECT@$CONFIGURATION"; then
+if ! /opt/mplabx/mplab_platform/bin/prjMakefilesGenerator.sh "$BUILD_PROJECT@$CONFIGURATION"; then
     echo "Error: Failed to generate makefiles"
     exit 1
 fi
 
 # Build the project using make
 echo "Building"
-if ! make -C "$PROJECT" CONF="$CONFIGURATION" build; then
-    echo "Error: Build failed for project $PROJECT with configuration $CONFIGURATION"
+if ! make -C "$BUILD_PROJECT" CONF="$CONFIGURATION" build; then
+    echo "Error: Build failed for project $BUILD_PROJECT with configuration $CONFIGURATION"
     exit 2
 fi
 
