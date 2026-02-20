@@ -1,11 +1,11 @@
 # Build with MPLAB X and XC8 GitHub Action
 
-This action will build a MPLAB X / XC8 project.
+This action will build a MPLAB X / XC32 project.
 
 It runs on Linux Ubuntu latest and uses:
 
 * [MPLAB X](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-x-ide)
-* [XC8](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xc-compilers)
+* [XC32](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xc-compilers)
 
 ## Inputs
 
@@ -40,14 +40,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: UAMP Build with MPLAB X and XC8
+      - name: UAMP Build with MPLAB X and XC32
         uses: uampio/mplabx-xc8-build-action@v1.0.46
         with:
           project: /github/workspace
           dfp_packs: "ATtiny_DFP=3.2.268"
           configuration: default
-          mplabx_version: "6.20"
-          xc8_version: "3.00"
+          mplabx_version: "6.30"
+          xc32_version: "3.00"
 
 ```
 
