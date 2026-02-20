@@ -1,5 +1,5 @@
-name: UAMP Build with MPLAB X and XC8
-description: This action builds a MPLAB X / XC8 project in a Linux container.
+name: UAMP Build with MPLAB X and XC32
+description: This action builds a MPLAB X / XC32 project in a Linux container.
 branding:
   icon: package
   color: gray-dark
@@ -7,15 +7,15 @@ inputs:
   mplabx_version:
     description: Version of MPLAB X to use
     required: true
-    default: "6.20"
-  xc8_version:
-    description: Version of the XC8 compiler to use
+    default: "6.30"
+  xc32_version:
+    description: Version of the XC32 compiler to use
     required: true
-    default: "2.50"
+    default: "5.00"
   dfp_packs:
     description: DFP packs to install
     required: false
-    default: "ATtiny_DFP=3.2.268"
+    default: ""
   project:
     description: Project folder location
     required: true
@@ -28,7 +28,7 @@ runs:
   image: Dockerfile
   env:
     MPLABX_VERSION: ${{ inputs.mplabx_version }}
-    XC8_VERSION: ${{ inputs.xc8_version }}
+    XC32_VERSION: ${{ inputs.xc32_version }}
     DFP_PACKS: ${{ inputs.dfp_packs }}
     PROJECT: ${{ inputs.project }}
     CONFIGURATION: ${{ inputs.configuration }}
