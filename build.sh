@@ -27,7 +27,9 @@ chmod +x mplabx
 
 sudo ./mplabx -- --unattendedmodeui none --mode unattended --ipe 0 --collectInfo 0 --installdir /opt/mplabx --8bitmcu  0 --16bitmcu 0 --32bitmcu 1 --othermcu 0
 
-rm -rf mplabx
+rm -f /tmp/MPLABX-v${MPLABX_VERSION}-linux-installer.tar
+rm -f /tmp/MPLABX-v${MPLABX_VERSION}-linux-installer.sh
+rm -f /tmp/mplabx
 
 # Download and install XC32 compiler
 wget -nv -O /tmp/xc32 "https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/xc32-v${XC32_VERSION}-full-install-linux-x64-installer.run"
